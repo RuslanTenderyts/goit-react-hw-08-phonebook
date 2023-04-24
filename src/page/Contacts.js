@@ -3,11 +3,10 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchContacts } from "redux/contacts/operations";
 import { getError, getIsLoading } from "redux/contacts/selectors";
-import { Layout } from "components/Layout/Layout";
-import { GlobalStyle } from "components/GlobalStyle"
 import { ContactFormik } from "components/ContactForm/ContactFormik";
 import ContactList  from "components/ContactList/ContactList" ;
 import Filter from "components/Filter/Filter"
+import { Container, Typography } from "@mui/material";
     
     
 export default function Contacts () { 
@@ -20,14 +19,25 @@ export default function Contacts () {
     }, [dispatch]);
 
     return (
-        <Layout>
-            <h1> PhoneBook </h1>
+        <Container  maxWidth="sm" >
+            <Typography
+            variant="h3"
+            component="h1">
+                PhoneBook
+            </Typography>
+
             <ContactFormik />
-            <h2> Contacts </h2>
+
+            <Typography
+            variant="h4"
+            component="h2"
+            >
+                Contacts
+            </Typography>
+            
             <Filter  />
             {isLoading && !error && <b>Request in progress...</b>}
             <ContactList />
-            <GlobalStyle/>
-        </Layout>
+        </Container>
     );
 }

@@ -1,9 +1,8 @@
 import React from "react";
-import {FilterLabel} from "./Filter.styled"
 import { useSelector, useDispatch } from "react-redux";
 import { setValueFilter } from "redux/contacts/filterSlice";
 import { getValueFilter } from "redux/contacts/selectors"
-
+import { InputLabel, Input, Typography } from "@mui/material";
 
 
 
@@ -17,9 +16,14 @@ const Filter = () =>  {
     
     return (
     
-        <FilterLabel>
-            <p>Find contacts by name</p>
-            <input
+        <InputLabel   >
+             <Typography 
+             variant="h6"
+             component="p"
+
+             >
+                Find contacts by name</Typography >
+            <Input
                 type="text"
                 name="filter"
                 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -27,8 +31,9 @@ const Filter = () =>  {
                 required
                 value={valueFilter}
                 onChange={handlerFilterChanch}
+                sx={{width: "350px"}}
             />
-        </FilterLabel>
+        </InputLabel >
     )
 }
 

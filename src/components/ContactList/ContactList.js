@@ -1,8 +1,10 @@
 import React from "react";
-import { Item, SpanNumber } from "./ContactList.styled";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteContact } from "redux/contacts/operations";
 import { getContacts, getValueFilter } from "redux/contacts/selectors"
+import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 
 
@@ -24,15 +26,23 @@ const ContactList = () => {
     const handleDeleteContact = (id) => { dispatch(deleteContact(id) );
     }
     return (
-      <ul>
+      <List >
+        
         {visibleContacts.map(({id, name, number}) => (
-          <Item key={id}>
-            <span> { name } : </span>
-                <SpanNumber> { number } </SpanNumber> 
-                <button onClick={()=> handleDeleteContact(id) }>Delete</button>
-            </Item>
+            <ListItem key={id} sx={{paddingLeft: "0"}}>
+              <ListItemText 
+                primary={ name }
+                secondary={number}
+                />
+              <ListItemSecondaryAction>
+                <IconButton type="button" sx={{ "&:hover": { color: "white", backgroundColor: "#1976d2" } }} edge="end" aria-label="delete" onClick={()=> handleDeleteContact(id) }>
+                  <DeleteIcon />
+                </IconButton>
+              </ListItemSecondaryAction>
+              
+            </ListItem>          
         ))}
-      </ul>
+      </List>
     );
   };
 
